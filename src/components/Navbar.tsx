@@ -149,6 +149,7 @@ export default function Navbar() {
                                 <Link
                                     key={href}
                                     href={href}
+                                    prefetch={true}
                                     className={`text-base font-medium relative py-2 transition-colors ${active ? 'text-white' : 'text-gray-400 hover:text-white'}`}
                                 >
                                     {label}

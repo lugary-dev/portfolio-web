@@ -1,6 +1,8 @@
 import SobreMiSection from '@/components/sobre-mi/SobreMiSection';
 import { getSobreMi } from '@/actions/sobreMi';
 
+export const revalidate = 3600; // Cache ISR: carga instantánea en 0ms; se purga automáticamente con revalidatePath
+
 export default async function Page() {
   const data = await getSobreMi();
   return (

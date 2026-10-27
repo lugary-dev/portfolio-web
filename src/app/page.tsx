@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ArrowRight, Send } from 'lucide-react';
 import { FaReact, FaNodeJs, FaDocker, FaDatabase } from 'react-icons/fa';
 import { SiNextdotjs, SiTypescript } from 'react-icons/si';
@@ -11,8 +12,12 @@ export default function Home() {
         @media (min-width: 375px) { .bg-mobile { top: 25px; } }
         @media (min-width: 425px) { .bg-mobile { top: 10px; } }
       `}</style>
-      <img src="/fondoDePantalla.webp" alt="" className="hidden md:block absolute inset-0 w-full h-full object-cover pointer-events-none -z-10" />
-      <img src="/fondoDePantallaMobile.webp" alt="" className="bg-mobile md:hidden absolute left-1/2 -translate-x-1/2 max-w-[425px] w-full pointer-events-none -z-10" />
+      <img src="/fondoDePantalla.webp" alt="" className="hidden md:block absolute inset-0 w-full h-full object-cover pointer-events-none -z-20" />
+      <img src="/fondoDePantallaMobile.webp" alt="" className="bg-mobile md:hidden absolute left-1/2 -translate-x-1/2 max-w-[425px] w-full pointer-events-none -z-20" />
+      
+      {/* Sombreado suave en gradiente para maximizar contraste y legibilidad del texto */}
+      <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-[#050507]/90 via-[#050507]/45 to-transparent pointer-events-none -z-10" />
+
       {/* Sección principal */}
       <div className="relative min-h-screen h-screen flex items-start md:items-center justify-center overflow-visible md:overflow-hidden md:py-0">
         <CodeCard />
@@ -29,22 +34,23 @@ export default function Home() {
               Estudiante de Ingeniería en Sistemas | Desarrollador Full-Stack
             </p>
 
-            <p className="text-gray-300 text-lg leading-relaxed max-w-xl" style={{ fontFamily: 'var(--font-barlow)' }}>
-              Transformo ideas en aplicaciones web modernas, escalables y eficientes. 
-              Me apasiona crear soluciones que generen impacto real a través de la tecnología.
+            <p className="text-gray-300 text-lg leading-relaxed max-w-2xl" style={{ fontFamily: 'var(--font-barlow)' }}>
+              Desarrollo aplicaciones web completas, <span className="text-white font-medium">desde la interfaz hasta la base de datos</span> con Next.js, TypeScript y PostgreSQL. Priorizo el rendimiento, la mantenibilidad y una experiencia de usuario cuidada.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 mt-2">
-              <a href="/proyectos"
-                className="group bg-[#FF5C00] hover:bg-[#e05200] text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-colors w-full sm:w-auto justify-center"
+              <Link href="/proyectos"
+                prefetch={true}
+                className="group bg-[#FF5C00] hover:bg-[#e05200] text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-200 w-full sm:w-auto justify-center shadow-lg shadow-[#FF5C00]/25 hover:shadow-[#FF5C00]/40 hover:-translate-y-0.5 active:translate-y-0"
                 style={{ fontFamily: 'var(--font-barlow)' }}>
                 Ver mis proyectos <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
-              <a href="/contacto"
-                className="group border border-white/40 hover:border-white text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-colors w-full sm:w-auto justify-center"
+              </Link>
+              <Link href="/contacto"
+                prefetch={true}
+                className="group border border-white/30 hover:border-[#FF5C00] hover:bg-[#FF5C00]/10 text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-200 w-full sm:w-auto justify-center hover:-translate-y-0.5 active:translate-y-0"
                 style={{ fontFamily: 'var(--font-barlow)' }}>
                 Contactar <Send size={16} className="transition-transform duration-300 group-hover:rotate-45" />
-              </a>
+              </Link>
             </div>
 
             {/* Tecnologías */}
@@ -75,11 +81,19 @@ export default function Home() {
         </div>
         
         {/* Scroll indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 md:block hidden">
-          <div className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center pt-2">
-            <div className="w-1 h-2 bg-[#FF5C00] rounded-full animate-bounce" />
+        <Link 
+          href="/proyectos" 
+          prefetch={true}
+          aria-label="Ir a proyectos"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 md:flex hidden opacity-70 hover:opacity-100 transition-opacity cursor-pointer group"
+        >
+          <div className="w-6 h-10 rounded-full border-2 border-white/40 group-hover:border-[#FF5C00] flex justify-center pt-2 transition-colors">
+            <div className="w-1.5 h-2.5 bg-[#FF5C00] rounded-full animate-bounce" />
           </div>
-        </div>
+          <span className="text-[10px] tracking-widest uppercase text-gray-400 group-hover:text-white transition-colors" style={{ fontFamily: 'var(--font-dm-mono)' }}>
+            Scroll
+          </span>
+        </Link>
       </div>
     </main>
   );

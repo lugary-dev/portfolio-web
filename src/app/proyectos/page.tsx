@@ -1,6 +1,8 @@
 import { getProyectos } from '@/actions/proyectos';
 import ProyectosSection from '@/components/proyectos/ProyectosSection';
 
+export const revalidate = 3600; // Cache ISR: carga instantánea en 0ms; se purga automáticamente con revalidatePath
+
 export default async function ProyectosPage() {
     const proyectos = await getProyectos();
     return (

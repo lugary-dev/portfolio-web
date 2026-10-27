@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import MobileNav from "@/components/MobileNav";
 import ScrollbarProvider from '@/components/ScrollbarProvider';
 import { AuthProvider } from '@/context/AuthContext';
+import PageTransition from "@/components/PageTransition";
 
 const bebasNeue = Bebas_Neue({
   variable: "--font-bebas",
@@ -45,13 +46,20 @@ export default function RootLayout({
       lang="es"
       className={`${bebasNeue.variable} ${dmMono.variable} ${barlowCondensed.variable} ${montserrat.variable} h-full antialiased`}
     >
+      <head>
+        {/* Preload de las imágenes de fondo para que estén en memoria desde el primer segundo */}
+        <link rel="preload" as="image" href="/fondoPantallaProyectos.webp" />
+        <link rel="preload" as="image" href="/fondoDePantallaSobreMi.webp" />
+      </head>
       <body className="h-full flex flex-col text-[110%]" style={{ fontFamily: 'var(--font-dm-mono)', backgroundColor: '#050507' }}>
         <AuthProvider>
           <Navbar />
           <MobileNav />
           <ScrollbarProvider>
-            <main className="flex-grow h-full relative">
-              {children}
+            <main className="flex-grow h-full relative overflow-x-clip">
+              <PageTransition>
+                {children}
+              </PageTransition>
             </main>
           </ScrollbarProvider>
         </AuthProvider>
