@@ -47,9 +47,13 @@ const variants: Variants = {
     filter: 'blur(3px)',
   }),
   animate: {
-    x: '0%',
+    x: 0,
     opacity: 1,
-    filter: 'blur(0px)',
+    filter: 'none',
+    transitionEnd: {
+      transform: 'none',
+      filter: 'none',
+    },
     transition: {
       duration: 0.45,
       ease: [0.16, 1, 0.3, 1] as const, // Inercia suave y elástica de consola/carousel
@@ -96,7 +100,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
           initial="initial"
           animate="animate"
           exit="exit"
-          className="w-full min-h-screen will-change-transform"
+          className="w-full min-h-screen"
         >
           <FrozenRouter>{children}</FrozenRouter>
         </motion.div>

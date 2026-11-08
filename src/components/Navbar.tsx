@@ -62,18 +62,37 @@ export default function Navbar() {
         return () => window.removeEventListener('keydown', handler);
     }, [modalOpen]);
 
+    // Limpiar timer de clics al desmontar
+    useEffect(() => {
+        return () => {
+            if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+        };
+    }, []);
+
     const handleSecretClick = useCallback(() => {
         clickCountRef.current += 1;
         if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+
         if (clickCountRef.current >= 3) {
             clickCountRef.current = 0;
             setModalOpen(true);
             return;
         }
+
         clickTimerRef.current = setTimeout(() => {
             clickCountRef.current = 0;
-        }, 600);
-    }, []);
+            if (pathname !== '/') {
+                router.push('/');
+            } else {
+                const viewport = document.querySelector('[data-overlayscrollbars-viewport]');
+                if (viewport) {
+                    viewport.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+        }, 320);
+    }, [pathname, router]);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -124,15 +143,15 @@ export default function Navbar() {
                     <div className="flex items-center gap-3">
                         <div
                             onClick={handleSecretClick}
-                            className="text-[#FF5C00] font-black text-5xl leading-none tracking-tighter select-none"
-                            style={{ cursor: 'default' }}
+                            className="text-[#FF5C00] font-black text-5xl leading-none tracking-tighter select-none cursor-pointer transition-transform hover:scale-105 active:scale-95"
+                            title="Ir a Inicio (o triple clic para admin)"
                         >
                             EF
                         </div>
-                        <div className="flex flex-col justify-center">
-                            <span className="text-white font-bold text-base leading-tight">Enzo Fernandez</span>
+                        <Link href="/" className="flex flex-col justify-center group">
+                            <span className="text-white font-bold text-base leading-tight group-hover:text-gray-200 transition-colors">Enzo Fernandez</span>
                             <span className="text-gray-400 text-xs leading-tight">Full-Stack Developer</span>
-                        </div>
+                        </Link>
                         {isAdmin && (
                             <button onClick={handleLogout}
                                 className="text-gray-400 hover:text-white text-xs font-mono border border-white/10 hover:border-white/30 px-3 py-1.5 rounded-full transition-all ml-2">
@@ -165,7 +184,7 @@ export default function Navbar() {
                             className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-white hover:border-[#FF5C00] hover:text-[#FF5C00] transition-all">
                             <FaGithub size={18} />
                         </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                        <a href="https://www.linkedin.com/in/enzomfernandez" target="_blank" rel="noopener noreferrer"
                             className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-white hover:border-[#FF5C00] hover:text-[#FF5C00] transition-all">
                             <FaLinkedin size={18} />
                         </a>

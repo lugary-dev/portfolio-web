@@ -18,7 +18,7 @@ export type Proyecto = {
     orden: number;
 };
 
-export const MOCK_PROYECTOS: Proyecto[] = [
+const MOCK_PROYECTOS: Proyecto[] = [
     {
         id: 'devflow-task-manager',
         titulo: 'DevFlow - Task & Sprint Manager',
@@ -29,7 +29,7 @@ export const MOCK_PROYECTOS: Proyecto[] = [
         demo_url: 'https://demo.com',
         categoria: ['Full-Stack', 'Web Apps'],
         tecnologias: ['Next.js', 'TypeScript', 'PostgreSQL', 'Tailwind', 'Docker'],
-        destacado: true,
+        destacado: false,
         orden: 1,
     },
     {
@@ -57,6 +57,19 @@ export const MOCK_PROYECTOS: Proyecto[] = [
         tecnologias: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
         destacado: false,
         orden: 3,
+    },
+    {
+        id: 'lugary-marketplace',
+        titulo: 'Lugary - Marketplace de Alquileres',
+        subtitulo: 'Plataforma para reserva de propiedades y eventos',
+        descripcion: '<p>Marketplace integral para alquileres temporarios y salones de eventos. Diseñado para ofrecer una experiencia fluida tanto a anfitriones como a huéspedes, con gestión de disponibilidad en calendario interactivo, panel de administración y arquitectura escalable.</p>',
+        imagen_url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&auto=format&fit=crop&q=80',
+        github_url: 'https://github.com',
+        demo_url: 'https://demo.com',
+        categoria: ['Full-Stack', 'Web Apps'],
+        tecnologias: ['Java', 'Spring Boot', 'React', 'PostgreSQL', 'Tailwind'],
+        destacado: false,
+        orden: 4,
     },
 ];
 

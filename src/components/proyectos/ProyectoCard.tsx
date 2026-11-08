@@ -16,7 +16,6 @@ interface CardProps {
   techIcons: React.ReactNode[];
   githubLink: string;
   projectLink: string;
-  highlight?: boolean;
   onDelete?: () => void;
 }
 
@@ -26,7 +25,7 @@ const extractFirstParagraph = (html: string): string => {
   return match[1].replace(/<[^>]*>/g, '').trim();
 };
 
-export default function ProyectoCard({ id, title, subtitle, description, image, techIcons, githubLink, projectLink, highlight, onDelete }: CardProps) {
+export default function ProyectoCard({ id, title, subtitle, description, image, techIcons, githubLink, projectLink, onDelete }: CardProps) {
   const [hovered, setHovered] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -72,7 +71,7 @@ export default function ProyectoCard({ id, title, subtitle, description, image, 
 
       <div
         onClick={() => router.push(projectLink)}
-        className={`relative h-full flex flex-col p-5 rounded-2xl bg-[#0c0d11] border cursor-pointer ${highlight ? 'border-[#FF5C00]' : 'border-[#1f2026]'}`}
+        className="relative h-full flex flex-col p-5 rounded-2xl bg-[#0c0d11] border border-[#1f2026] cursor-pointer"
         style={{
           boxShadow: hovered ? '0 0 40px rgba(255,92,0,0.45), 0 0 80px rgba(255,92,0,0.2), inset 0 1px 0 rgba(255,255,255,0.08)' : '0 0 0 transparent',
           border: hovered ? '1px solid rgba(255,92,0,0.6)' : undefined,

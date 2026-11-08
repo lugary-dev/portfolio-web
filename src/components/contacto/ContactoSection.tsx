@@ -165,7 +165,7 @@ export default function ContactoSection() {
                 className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-white hover:border-[#FF5C00] hover:text-[#FF5C00] transition-all">
                 <FaGithub size={18} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.linkedin.com/in/enzomfernandez" target="_blank" rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full border border-gray-600 flex items-center justify-center text-white hover:border-[#FF5C00] hover:text-[#FF5C00] transition-all">
                 <FaLinkedin size={18} />
               </a>

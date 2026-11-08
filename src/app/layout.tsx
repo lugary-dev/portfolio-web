@@ -51,7 +51,11 @@ export default function RootLayout({
         <link rel="preload" as="image" href="/fondoPantallaProyectos.webp" />
         <link rel="preload" as="image" href="/fondoDePantallaSobreMi.webp" />
       </head>
-      <body className="h-full flex flex-col text-[110%]" style={{ fontFamily: 'var(--font-dm-mono)', backgroundColor: '#050507' }}>
+      <body
+        suppressHydrationWarning
+        className="h-full flex flex-col text-[110%]"
+        style={{ fontFamily: 'var(--font-dm-mono)', backgroundColor: '#050507' }}
+      >
         <AuthProvider>
           <Navbar />
           <MobileNav />
